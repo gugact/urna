@@ -1,4 +1,4 @@
-package br.usp.icmc.gustavo.urna_androidapp;
+package br.usp.icmc.gustavo.urna_androidapp.model;
 
 import java.io.Serializable;
 

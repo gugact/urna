@@ -3,9 +3,6 @@ package br.usp.icmc.gustavo.urna_androidapp.model;
 import java.io.*;
 import java.util.*;
 
-import br.usp.icmc.gustavo.urna_androidapp.Candidato;
-import br.usp.icmc.gustavo.urna_androidapp.Voto;
-
 public class Arquivo {
 	
 	private File arquivo;

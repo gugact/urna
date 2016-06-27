@@ -15,14 +15,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import br.usp.icmc.gustavo.urna_androidapp.Candidato;
-import br.usp.icmc.gustavo.urna_androidapp.Cliente;
+import br.usp.icmc.gustavo.urna_androidapp.model.Candidato;
+import br.usp.icmc.gustavo.urna_androidapp.model.Cliente;
 import br.usp.icmc.gustavo.urna.R;
 import br.usp.icmc.gustavo.urna_androidapp.model.Arquivo;
 
 
 
-public class Urna_main_activity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private  Button but_obterlist,but_enviarlist;
     private static final String ARQ_VOTOS = "votos.txt";

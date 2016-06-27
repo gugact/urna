@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="br.usp.icmc.gustavo.urna_androidapp.controller.Urna_main_activity">
+        <activity android:name="br.usp.icmc.gustavo.urna_androidapp.controller.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
