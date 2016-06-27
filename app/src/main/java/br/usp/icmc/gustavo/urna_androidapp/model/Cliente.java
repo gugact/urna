@@ -25,7 +25,7 @@ public class Cliente {
 
 	}
 	//solicita e recebe o arquivo de candidatos do servidor e faz uma copia no Cliente
-	public File receberTransferenciaArquivoCandidatos(final String arqDestino, final File cache_dir) throws IOException {
+	public File receberTransferenciaArquivoCandidatos(final String arqDestino, final File cache_dir) throws IOException, InterruptedException {
 
 		final File arquivo_candidatos = new File(cache_dir,arqDestino);
 		final Thread t = new Thread() {
@@ -88,14 +88,16 @@ public class Cliente {
 				} catch (IOException e) {
 					e.printStackTrace();
 				} catch (InterruptedException e) {
-                    e.printStackTrace();
-                } finally {
+                    		e.printStackTrace();
+                		} finally {
 
 				}
 			}
 		};
 		t.start();
-
+		t.join();
+        	//while(t.isAlive()){}
+        
 /*
 		if (socket == null){
 			return null;
