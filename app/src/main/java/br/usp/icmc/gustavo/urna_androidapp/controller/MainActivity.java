@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             {
 
                 hideSoftKeyboard(this);
-                if(arquivoCandidatos== null){
+                 if(arquivoCandidatos== null){
                     Cliente conexao = new Cliente();
                     try {
                         File arquivo_recebido_candidatos = conexao.receberTransferenciaArquivoCandidatos(ARQ_CANDIDATOS, getApplicationContext().getCacheDir());
@@ -199,6 +199,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                     } catch (IOException err) {
                         err.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
                     }
                 }
                 else{
