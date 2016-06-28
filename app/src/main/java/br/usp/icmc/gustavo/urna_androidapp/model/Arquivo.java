@@ -11,7 +11,7 @@ public class Arquivo {
 		this.arquivo = arquivo;
 	}
 	//carrega lista de candidatos de um arquivo
-	public	List<Candidato> listaCandidatos() throws IOException {
+	public List<Candidato> listaCandidatos() throws IOException {
 
         if(arquivo == null){
             return null;
@@ -32,7 +32,8 @@ public class Arquivo {
 		buffReader.close();
 
                 return listaCandidatos;
-        }
+	}
+
 	//inicia o arquivo de votos com valores iniciais
 	public void inicializarVotos(List<Candidato> listaCandidatos) {
 	
@@ -49,7 +50,6 @@ public class Arquivo {
 
 	//atualiza o arquivo de votos com opção de voto passada
 	public void gravarVoto(int opt) {
-
 		List<Voto> listaVotos =  carregarVotos();
 		try {
 			BufferedWriter buffWriter = new BufferedWriter(new FileWriter(this.arquivo));
@@ -79,7 +79,6 @@ public class Arquivo {
 				}
 			}
 		}
-		
 		try {
 			BufferedWriter buffWriter = new BufferedWriter(new FileWriter(this.arquivo));
 			for(Candidato candidato: listaCandidatos) {
@@ -91,9 +90,9 @@ public class Arquivo {
 			e.printStackTrace();
 		}
 	}
+
 	//carrega votos do arquivo de votos
 	public List<Voto> carregarVotos() {
-
 		List<Voto> listaVotos = new ArrayList<>();
 		try {
 			BufferedReader buffReader = new BufferedReader(new FileReader(this.arquivo));

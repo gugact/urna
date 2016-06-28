@@ -11,9 +11,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Cliente {
 
@@ -38,7 +35,6 @@ public class Cliente {
 					BufferedReader buffReader = new BufferedReader(new InputStreamReader(socket_entrada.getInputStream(), "UTF-8"));
 
 					BufferedWriter buffWriter = new BufferedWriter(new FileWriter(arquivo_candidatos));
-					List<Candidato> listaCandidatos = new ArrayList<>();
 
 					// enviando para o servidor solicitação de lista de candidatos
 					writer.write("999" + "\n");
@@ -51,53 +47,30 @@ public class Cliente {
                     int count = 0;
                     //recebe o arquivo até que a última mensagem seja recebida ou até 1,5s (timeout)
 					while (!fim_da_mensagem && count < 3){
-
 						while((linha = buffReader.readLine()) != null) {
-
                             Log.d("CLIENTE","receber candidatos: " + linha);
 							mensagem_inteira = mensagem_inteira + linha + "\n";
-
-
 						}
                         fim_da_mensagem = mensagem_inteira.contains("Chun");
                         if (fim_da_mensagem){
                             buffWriter.append(mensagem_inteira);
-
                         }
-                        if(fim_da_mensagem == false){
+                        if(!fim_da_mensagem){
                             Thread.sleep(500);
                             count++;
                         }
-
 					}
-
-
-
-
-
 					buffReader.close();
 					buffWriter.close();
-
 					socket_entrada.close();
-
-
-
-
-				} catch (UnknownHostException e) {
+				} catch (IOException | InterruptedException e) {
 					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				} catch (InterruptedException e) {
-                    		e.printStackTrace();
-                		} finally {
-
 				}
-			}
+            }
 		};
 		t.start();
 		t.join();
         	//while(t.isAlive()){}
-        
 /*
 		if (socket == null){
 			return null;
@@ -109,11 +82,9 @@ public class Cliente {
             arquivo_candidatos.delete();
             return null;
         }
-
-
 		return arquivo_candidatos;
-
 	}
+
 	//sinaliza e envia o arquivo de fechamento de urna para o servidor
 	public void enviarContagem(String arqFechamento,File cache_dir_fechamento) throws IOException {
 
@@ -123,12 +94,8 @@ public class Cliente {
                 try {
                     socket_saida = new Socket("cosmos.lasdpc.icmc.usp.br", 40007);
                     PrintWriter writer = new PrintWriter(socket_saida.getOutputStream());
-
                     // montando mensagem com votacao para enviar ao servidor
                     String mensagem_para_servidor= "888" + "\n";
-
-
-
                     BufferedReader buffReader = new BufferedReader(new FileReader(arq_fechamento));
                     String linha2;
                     boolean ultima_msg = false;
@@ -147,26 +114,15 @@ public class Cliente {
                             }
                         }
                     }
-
                     buffReader.close();
                     writer.close();
                     socket_saida.close();
-
-
-
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
-                } finally {
-
                 }
             }
         };
         fechar.start();
-
-
-
 	}
 }
 
