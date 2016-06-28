@@ -2,7 +2,7 @@ package br.usp.icmc.gustavo.urna_androidapp.listeners;
 
 import br.usp.icmc.gustavo.urna_androidapp.model.Candidato;
 
-public interface OnDialogCallback {
+public interface onDialogCallback {
 
     void onDialogSucess(Candidato candidato);
 
