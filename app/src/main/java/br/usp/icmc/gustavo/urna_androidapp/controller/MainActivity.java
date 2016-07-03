@@ -18,14 +18,14 @@ import java.net.Socket;
 import java.util.List;
 
 import br.usp.icmc.gustavo.urna.R;
-import br.usp.icmc.gustavo.urna_androidapp.listeners.OnDialogCallback;
+import br.usp.icmc.gustavo.urna_androidapp.listeners.onDialogCallback;
 import br.usp.icmc.gustavo.urna_androidapp.model.Arquivo;
 import br.usp.icmc.gustavo.urna_androidapp.model.Candidato;
 import br.usp.icmc.gustavo.urna_androidapp.model.Cliente;
 
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, OnDialogCallback {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, onDialogCallback {
 
     private  Button but_obterlist,but_enviarlist;
     private static final String ARQ_VOTOS = "votos.txt";
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         context = this;
         initView();
         initListeners();
-        startSocketConnection();
+        //startSocketConnection();
     }
 
     private void initView() {
@@ -167,8 +167,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //após obter, lê o arquivo e inicializa o arquivo de votos com os votos possíveis e o valor 0
             case R.id.button4:
                  if(arquivoCandidatos== null ){
-                     if (socket_entrada != null && socket_entrada.isConnected()){
-                        Cliente conexao = new Cliente();
+                     /*if (socket_entrada != null && socket_entrada.isConnected()){
+                         try {
+                             socket_entrada.close();
+                         } catch (IOException e) {
+                             e.printStackTrace();
+                         }*/
+                         Cliente conexao = new Cliente();
                         try {
                             File arquivo_recebido_candidatos = conexao.receberTransferenciaArquivoCandidatos(ARQ_CANDIDATOS, getApplicationContext().getCacheDir());
                             if(arquivo_recebido_candidatos != null){
@@ -185,10 +190,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         } catch (IOException | InterruptedException err) {
                             err.printStackTrace();
                         }
-                     }else{
+                     /*}else{
                          Toast.makeText(getApplicationContext(), "Servidor Socket não esta acessivel", Toast.LENGTH_SHORT).show();
                          startSocketConnection();
-                     }
+                     }*/
                  } else{
                     Toast.makeText(getApplicationContext(), "Você já tem a lista!", Toast.LENGTH_SHORT).show();
                 }
@@ -272,3 +277,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 }
+
